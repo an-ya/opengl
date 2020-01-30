@@ -2,5 +2,6 @@
     <qresource prefix="/new">
         <file>simple.vert</file>
         <file>simple.frag</file>
+        <file>side1.png</file>
     </qresource>
 </RCC>

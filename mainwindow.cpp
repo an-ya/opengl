@@ -9,10 +9,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
 //    ui->openGLWidget->setFocusPolicy(Qt::StrongFocus);
 
-//    QRegExp rx("(^[1-9]\\d$)|(^[1-9]$)|(^0$)");
     QRegExp rx("^[1-2]\\d|[1-9]|[1-2]\\d\\.\\d{1,4}|[1-9]\\.\\d{1,4}|30$"); //1到30的浮点数匹配
     QRegExpValidator *pReg = new QRegExpValidator(rx, this);
-
     ui->lineEdit->setValidator(pReg);
 
     ui->lineEdit->setText(QString("%1").arg(ui->openGLWidget->getT()));
@@ -49,6 +47,7 @@ void MainWindow::setSliderValue(const QString &text)
 
 void MainWindow::keyPressEvent(QKeyEvent *ev)
 {
+    ui->openGLWidget->setKeyPressText(ev->text());
     switch (ev->key())
     {
     case Qt::Key_W:
@@ -63,6 +62,18 @@ void MainWindow::keyPressEvent(QKeyEvent *ev)
     case Qt::Key_D:
         ui->btnD->setChecked(true);
         break;
+    case Qt::Key_Left:
+        ui->btnLeft->setChecked(true);
+        break;
+    case Qt::Key_Up:
+        ui->btnUp->setChecked(true);
+        break;
+    case Qt::Key_Right:
+        ui->btnRight->setChecked(true);
+        break;
+    case Qt::Key_Down:
+        ui->btnDown->setChecked(true);
+        break;
     default:
         break;
     }
@@ -70,6 +81,7 @@ void MainWindow::keyPressEvent(QKeyEvent *ev)
 
 void MainWindow::keyReleaseEvent(QKeyEvent *ev)
 {
+    ui->openGLWidget->setKeyPressText("");
     switch (ev->key())
     {
     case Qt::Key_W:
@@ -84,6 +96,17 @@ void MainWindow::keyReleaseEvent(QKeyEvent *ev)
     case Qt::Key_D:
         ui->btnD->setChecked(false);
         break;
+    case Qt::Key_Left:
+        ui->btnLeft->setChecked(false);
+        break;
+    case Qt::Key_Up:
+        ui->btnUp->setChecked(false);
+        break;
+    case Qt::Key_Right:
+        ui->btnRight->setChecked(false);
+        break;
+    case Qt::Key_Down:
+        ui->btnDown->setChecked(false);
     default:
         break;
     }
